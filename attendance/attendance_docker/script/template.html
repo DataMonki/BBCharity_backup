@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    font-family: "Century Gothic", serif;
+    text-align: left;
+  }
+
+  td {
+    text-align: left;
+  }
+</style>
+<body>
+  <header>
+    <h1>{{data['name']}}'s Attendence Record</h1>
+  </header>
+  <main>
+    <section>
+      <table>
+        <tr>
+          <th>Total Sessions</th>
+          <th colspan="1">On time</th>
+          <th colspan="1">Late</th>
+          <th colspan="1">Curtailed/Cancelled</th>
+        </tr>
+        <tr>
+          <td>{{data['sessions']}}</td>
+          <td >{{data['frequency'].get('Session ran on time and as normal')}}</td>
+          <td >{{data['frequency'].get('Session started late but went well')}}</td>
+          <td >{{data['frequency'].get('Session was Curtailed or Cancelled')}}</td>
+        </tr>
+      </table>
+    </section>
+    
+    <section>
+    <table>
+      <tr>
+        <th>Date</th>
+        <th colspan="2">Status</th>
+      </tr>
+      {% for event in data.get('events') %}
+      <tr>
+        <td>{{event['date']}}</td>
+        <td colspan="2">{{event['status']}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </section>
+  </main>
+  
+</body>
+</html>
